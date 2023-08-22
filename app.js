@@ -46,7 +46,7 @@ app.post("/" , function(req, res){
     
     
     const API = process.env.API_KEY;
-    
+
     const options = {
         method: "POST",
         auth: "Saurabh:"+ API
@@ -78,7 +78,7 @@ app.post("/faliure.html" , function(req,res){
     res.redirect("/");
 })
 
-app.listen( process.env.PORT || 3000, function(){
+app.listen( 3000, function(){
     console.log("server is running at port 3000");
 });
 
