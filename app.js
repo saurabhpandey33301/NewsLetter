@@ -7,6 +7,8 @@ const request = require("request");
 const https = require("https");
 const bodyParser= require("body-parser");
 
+require('dotenv').config();
+
 const app = express(); 
 
 app.use(express.static("public"));
@@ -17,6 +19,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/" , function(req,res){
     res.sendFile(__dirname + "/index.html");
+    
 })
 
 app.post("/" , function(req, res){
@@ -40,10 +43,13 @@ app.post("/" , function(req, res){
     const jsonData = JSON.stringify(data);
 
     const url = "https://us8.api.mailchimp.com/3.0/lists/e60b01393d"
-   
+    
+    
+    const API = process.env.API_KEY;
+    
     const options = {
         method: "POST",
-        auth: "Saurabh:e325391a321ab88f3f18ac1926f7d083-us8"
+        auth: "Saurabh:"+ API
     }
 
 
@@ -58,6 +64,7 @@ app.post("/" , function(req, res){
             }
         
             response.on("data", function(data){
+                
                 console.log(JSON.parse(data));
             })
     })
@@ -71,7 +78,7 @@ app.post("/faliure.html" , function(req,res){
     res.redirect("/");
 })
 
-app.listen(3000, function(){
+app.listen( process.env.PORT || 3000, function(){
     console.log("server is running at port 3000");
 });
 
