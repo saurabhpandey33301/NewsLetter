@@ -65,8 +65,8 @@ app.post("/" , function(req, res){
         
             response.on("data", function(data){
                 
-                //console.log(JSON.parse(data));
-                console.log(process.env);
+                console.log(JSON.parse(data));
+                
             })
     })
     
